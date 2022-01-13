@@ -45,9 +45,6 @@ The authentication of the partner system is given by the `DPDHL-User-Authenticat
 ```
 'DPDHL-User-Authentication-Token: <base-64 coded partnerId:partnerPassword>'
 ```
-# Scenarios
-## Scenario: Creating a returnlabel
-The single scenario supported by this service is creating a returnlabel. This is achieved by posting a return order to the URI '/{billingNumber}/returns'. The service will respond with a return label.
 
 
 
@@ -55,7 +52,8 @@ The single scenario supported by this service is creating a returnlabel. This is
 
 ### Requirements
 
-PHP 7.2 and later.
+PHP 7.3 and later.
+Should also work with PHP 8.0 but has not been tested.
 
 ### Composer
 

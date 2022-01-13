@@ -2,7 +2,7 @@
 /**
  * ObjectSerializer
  *
- * PHP version 7.2
+ * PHP version 7.3
  *
  * @category Class
  * @package  Dhl\Rest\Retoure
@@ -13,12 +13,11 @@
 /**
  * Returnlabel Service for Business Customers of DP-DHL Group
  *
- * # Introduction ## Overview    This is the specification of the DP-DHL Group Parcel Return Web Services for business customers. This web service allows business customers to create returnlabels on demand.  ## Pre-conditions    In order to access this service, a registration for the DP-DHL Group Customer Integration Gateway (\"CIG\") is required. Partners can register [here](https://entwickler.dhl.de/web/ep/anmeldung).    Apart from CIG credentials, a partner system has to identify itself and needs be authorized for this particular service. This requires another pair of credentials. Both credentials must be passed as request headers. (See \"Web service authentication\".)    The service can only be reached through HTTPS. HTTP requests are ignored (by CIG).    The web service is a REST interface that can be accessed by a number of libraries and tools for different programming languages and environments.   ## Error handling All error responses (4xx and 5xx) have the `Content-Type` header set to `application/problem+json` or `application/problem+xml`, if the requests `Content-Type` were `application/json` or `application/xml`.   The response content must also contain the HTTP return code as well as the reason for the error. For example  ``` {\"code\":\"INVALID_PRODUCT_SELECTION\",\"detail\":\"Invalid product/service combination.\"} ``` Note that the error code given here is a business-level error code, not the HTTP error code.  The most common HTTP codes to expect from this service are: >400: Bad Request. A client error that can denote a syntax or semantic error. Error details can be found in the return `Error` object. Do not repeat the request without changing it.  >401: Authentication failed. The caller provided the wrong credentials. Do not repeat the request without changing it.  >403: Authorization failed. The caller has provided the correct credentials, but hasn't got sufficient privileges to access a given resource. ## Web Service Authentication The caller needs two sets of credentials: The Gateway (CIG) authenticates users using [Basic HTTP Authentication](https://tools.ietf.org/html/rfc7617), passed as a `Authorization` request header  ``` 'Authorization: Basic <base-64 coded cigUser:cigPassword>' ``` The authentication of the partner system is given by the `DPDHL-User-Authentication-Token` header. The value uses the same syntax as that of the `Authentication`. ``` 'DPDHL-User-Authentication-Token: <base-64 coded partnerId:partnerPassword>' ``` # Scenarios ## Scenario: Creating a returnlabel The single scenario supported by this service is creating a returnlabel. This is achieved by posting a return order to the URI '/{billingNumber}/returns'. The service will respond with a return label.
+ * # Introduction ## Overview    This is the specification of the DP-DHL Group Parcel Return Web Services for business customers. This web service allows business customers to create returnlabels on demand.  ## Pre-conditions    In order to access this service, a registration for the DP-DHL Group Customer Integration Gateway (\"CIG\") is required. Partners can register [here](https://entwickler.dhl.de/web/ep/anmeldung).    Apart from CIG credentials, a partner system has to identify itself and needs be authorized for this particular service. This requires another pair of credentials. Both credentials must be passed as request headers. (See \"Web service authentication\".)    The service can only be reached through HTTPS. HTTP requests are ignored (by CIG).    The web service is a REST interface that can be accessed by a number of libraries and tools for different programming languages and environments.   ## Error handling All error responses (4xx and 5xx) have the `Content-Type` header set to `application/problem+json` or `application/problem+xml`, if the requests `Content-Type` were `application/json` or `application/xml`.   The response content must also contain the HTTP return code as well as the reason for the error. For example  ``` {\"code\":\"INVALID_PRODUCT_SELECTION\",\"detail\":\"Invalid product/service combination.\"} ``` Note that the error code given here is a business-level error code, not the HTTP error code.  The most common HTTP codes to expect from this service are: >400: Bad Request. A client error that can denote a syntax or semantic error. Error details can be found in the return `Error` object. Do not repeat the request without changing it.  >401: Authentication failed. The caller provided the wrong credentials. Do not repeat the request without changing it.  >403: Authorization failed. The caller has provided the correct credentials, but hasn't got sufficient privileges to access a given resource. ## Web Service Authentication The caller needs two sets of credentials: The Gateway (CIG) authenticates users using [Basic HTTP Authentication](https://tools.ietf.org/html/rfc7617), passed as a `Authorization` request header  ``` 'Authorization: Basic <base-64 coded cigUser:cigPassword>' ``` The authentication of the partner system is given by the `DPDHL-User-Authentication-Token` header. The value uses the same syntax as that of the `Authentication`. ``` 'DPDHL-User-Authentication-Token: <base-64 coded partnerId:partnerPassword>' ```
  *
  * The version of the OpenAPI document: 0.0.1
- * 
  * Generated by: https://openapi-generator.tech
- * OpenAPI Generator version: 5.0.1
+ * OpenAPI Generator version: 5.3.1
  */
 
 /**
@@ -87,7 +86,7 @@ class ObjectSerializer
                 foreach ($data::openAPITypes() as $property => $openAPIType) {
                     $getter = $data::getters()[$property];
                     $value = $data->$getter();
-                    if ($value !== null && !in_array($openAPIType, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+                    if ($value !== null && !in_array($openAPIType, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
                         $callable = [$openAPIType, 'getAllowableEnumValues'];
                         if (is_callable($callable)) {
                             /** array $callable */
@@ -275,11 +274,11 @@ class ObjectSerializer
 
         if (strcasecmp(substr($class, -2), '[]') === 0) {
             $data = is_string($data) ? json_decode($data) : $data;
-            
+
             if (!is_array($data)) {
                 throw new \InvalidArgumentException("Invalid array '$class'");
             }
-            
+
             $subClass = substr($class, 0, -2);
             $values = [];
             foreach ($data as $key => $value) {
@@ -288,7 +287,7 @@ class ObjectSerializer
             return $values;
         }
 
-        if (substr($class, 0, 4) === 'map[') { // for associative array e.g. map[string,int]
+        if (preg_match('/^(array<|map\[)/', $class)) { // for associative array e.g. array<string,int>
             $data = is_string($data) ? json_decode($data) : $data;
             settype($data, 'array');
             $inner = substr($class, 4, -1);
@@ -305,6 +304,9 @@ class ObjectSerializer
 
         if ($class === 'object') {
             settype($data, 'array');
+            return $data;
+        } else if ($class === 'mixed') {
+            settype($data, gettype($data));
             return $data;
         }
 
@@ -331,7 +333,7 @@ class ObjectSerializer
         }
 
         /** @psalm-suppress ParadoxicalCondition */
-        if (in_array($class, ['DateTime', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
+        if (in_array($class, ['\DateTime', '\SplFileObject', 'array', 'bool', 'boolean', 'byte', 'double', 'float', 'int', 'integer', 'mixed', 'number', 'object', 'string', 'void'], true)) {
             settype($data, $class);
             return $data;
         }

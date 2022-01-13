@@ -2,7 +2,7 @@
 /**
  * CustomsDocumentPosition
  *
- * PHP version 7.2
+ * PHP version 7.3
  *
  * @category Class
  * @package  Dhl\Rest\Retoure
@@ -13,12 +13,11 @@
 /**
  * Returnlabel Service for Business Customers of DP-DHL Group
  *
- * # Introduction ## Overview    This is the specification of the DP-DHL Group Parcel Return Web Services for business customers. This web service allows business customers to create returnlabels on demand.  ## Pre-conditions    In order to access this service, a registration for the DP-DHL Group Customer Integration Gateway (\"CIG\") is required. Partners can register [here](https://entwickler.dhl.de/web/ep/anmeldung).    Apart from CIG credentials, a partner system has to identify itself and needs be authorized for this particular service. This requires another pair of credentials. Both credentials must be passed as request headers. (See \"Web service authentication\".)    The service can only be reached through HTTPS. HTTP requests are ignored (by CIG).    The web service is a REST interface that can be accessed by a number of libraries and tools for different programming languages and environments.   ## Error handling All error responses (4xx and 5xx) have the `Content-Type` header set to `application/problem+json` or `application/problem+xml`, if the requests `Content-Type` were `application/json` or `application/xml`.   The response content must also contain the HTTP return code as well as the reason for the error. For example  ``` {\"code\":\"INVALID_PRODUCT_SELECTION\",\"detail\":\"Invalid product/service combination.\"} ``` Note that the error code given here is a business-level error code, not the HTTP error code.  The most common HTTP codes to expect from this service are: >400: Bad Request. A client error that can denote a syntax or semantic error. Error details can be found in the return `Error` object. Do not repeat the request without changing it.  >401: Authentication failed. The caller provided the wrong credentials. Do not repeat the request without changing it.  >403: Authorization failed. The caller has provided the correct credentials, but hasn't got sufficient privileges to access a given resource. ## Web Service Authentication The caller needs two sets of credentials: The Gateway (CIG) authenticates users using [Basic HTTP Authentication](https://tools.ietf.org/html/rfc7617), passed as a `Authorization` request header  ``` 'Authorization: Basic <base-64 coded cigUser:cigPassword>' ``` The authentication of the partner system is given by the `DPDHL-User-Authentication-Token` header. The value uses the same syntax as that of the `Authentication`. ``` 'DPDHL-User-Authentication-Token: <base-64 coded partnerId:partnerPassword>' ``` # Scenarios ## Scenario: Creating a returnlabel The single scenario supported by this service is creating a returnlabel. This is achieved by posting a return order to the URI '/{billingNumber}/returns'. The service will respond with a return label.
+ * # Introduction ## Overview    This is the specification of the DP-DHL Group Parcel Return Web Services for business customers. This web service allows business customers to create returnlabels on demand.  ## Pre-conditions    In order to access this service, a registration for the DP-DHL Group Customer Integration Gateway (\"CIG\") is required. Partners can register [here](https://entwickler.dhl.de/web/ep/anmeldung).    Apart from CIG credentials, a partner system has to identify itself and needs be authorized for this particular service. This requires another pair of credentials. Both credentials must be passed as request headers. (See \"Web service authentication\".)    The service can only be reached through HTTPS. HTTP requests are ignored (by CIG).    The web service is a REST interface that can be accessed by a number of libraries and tools for different programming languages and environments.   ## Error handling All error responses (4xx and 5xx) have the `Content-Type` header set to `application/problem+json` or `application/problem+xml`, if the requests `Content-Type` were `application/json` or `application/xml`.   The response content must also contain the HTTP return code as well as the reason for the error. For example  ``` {\"code\":\"INVALID_PRODUCT_SELECTION\",\"detail\":\"Invalid product/service combination.\"} ``` Note that the error code given here is a business-level error code, not the HTTP error code.  The most common HTTP codes to expect from this service are: >400: Bad Request. A client error that can denote a syntax or semantic error. Error details can be found in the return `Error` object. Do not repeat the request without changing it.  >401: Authentication failed. The caller provided the wrong credentials. Do not repeat the request without changing it.  >403: Authorization failed. The caller has provided the correct credentials, but hasn't got sufficient privileges to access a given resource. ## Web Service Authentication The caller needs two sets of credentials: The Gateway (CIG) authenticates users using [Basic HTTP Authentication](https://tools.ietf.org/html/rfc7617), passed as a `Authorization` request header  ``` 'Authorization: Basic <base-64 coded cigUser:cigPassword>' ``` The authentication of the partner system is given by the `DPDHL-User-Authentication-Token` header. The value uses the same syntax as that of the `Authentication`. ``` 'DPDHL-User-Authentication-Token: <base-64 coded partnerId:partnerPassword>' ```
  *
  * The version of the OpenAPI document: 0.0.1
- * 
  * Generated by: https://openapi-generator.tech
- * OpenAPI Generator version: 5.0.1
+ * OpenAPI Generator version: 5.3.1
  */
 
 /**
@@ -42,7 +41,7 @@ use \Dhl\Rest\Retoure\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
- * @template TValue mixed|null  
+ * @template TValue mixed|null
  */
 class CustomsDocumentPosition implements ModelInterface, ArrayAccess, \JsonSerializable
 {
@@ -194,9 +193,6 @@ class CustomsDocumentPosition implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    
-
-    
 
     /**
      * Associative array for storing property values
@@ -271,14 +267,11 @@ class CustomsDocumentPosition implements ModelInterface, ArrayAccess, \JsonSeria
             $invalidProperties[] = "invalid value for 'origin_country', the character length must be bigger than or equal to 3.";
         }
 
-        if ($this->container['article_reference'] === null) {
-            $invalidProperties[] = "'article_reference' can't be null";
-        }
-        if ((mb_strlen($this->container['article_reference']) > 40)) {
+        if (!is_null($this->container['article_reference']) && (mb_strlen($this->container['article_reference']) > 40)) {
             $invalidProperties[] = "invalid value for 'article_reference', the character length must be smaller than or equal to 40.";
         }
 
-        if ((mb_strlen($this->container['article_reference']) < 0)) {
+        if (!is_null($this->container['article_reference']) && (mb_strlen($this->container['article_reference']) < 0)) {
             $invalidProperties[] = "invalid value for 'article_reference', the character length must be bigger than or equal to 0.";
         }
 
@@ -457,7 +450,7 @@ class CustomsDocumentPosition implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets article_reference
      *
-     * @return string
+     * @return string|null
      */
     public function getArticleReference()
     {
@@ -467,16 +460,16 @@ class CustomsDocumentPosition implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets article_reference
      *
-     * @param string $article_reference Reference of the returned item.
+     * @param string|null $article_reference Reference of the returned item.
      *
      * @return self
      */
     public function setArticleReference($article_reference)
     {
-        if ((mb_strlen($article_reference) > 40)) {
+        if (!is_null($article_reference) && (mb_strlen($article_reference) > 40)) {
             throw new \InvalidArgumentException('invalid length for $article_reference when calling CustomsDocumentPosition., must be smaller than or equal to 40.');
         }
-        if ((mb_strlen($article_reference) < 0)) {
+        if (!is_null($article_reference) && (mb_strlen($article_reference) < 0)) {
             throw new \InvalidArgumentException('invalid length for $article_reference when calling CustomsDocumentPosition., must be bigger than or equal to 0.');
         }
 
