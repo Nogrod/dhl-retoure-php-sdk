@@ -92,17 +92,10 @@ Please follow the [installation procedure](#installation--usage) and then run th
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-
-
-// Configure HTTP basic authorization: appAuth
-$config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-// Configure API key authorization: userAuth
-$config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setApiKey('DPDHL-User-Authentication-Token', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setApiKeyPrefix('DPDHL-User-Authentication-Token', 'Bearer');
+$cconfig = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()
+              ->setUsername('AppID')
+              ->setPassword('AppToken')
+              ->setApiKey('DPDHL-User-Authentication-Token', base64_encode('DeveloperID'.':'.'DeveloperPortalPassword'));
 
 
 $apiInstance = new Dhl\Rest\Retoure\Api\ReturnsApi(
