@@ -26,11 +26,3 @@ lib/Model/ReturnOrderConfirmation.php
 lib/Model/SimpleAddress.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
-test/Api/ReturnsApiTest.php
-test/Model/CountryTest.php
-test/Model/CustomsDocumentPositionTest.php
-test/Model/CustomsDocumentTest.php
-test/Model/ErrorTest.php
-test/Model/ReturnOrderConfirmationTest.php
-test/Model/ReturnOrderTest.php
-test/Model/SimpleAddressTest.php
