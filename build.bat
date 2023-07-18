@@ -1,1 +1,1 @@
-java -jar openapi-generator-cli-5.3.1.jar generate -i 20210410_API-Retoure.yaml -g php --git-user-id nogrod --git-repo-id dhl-retoure-php-sdk --artifact-version 0.0.1 --additional-properties invokerPackage=Dhl\Rest\Retoure
+java -jar openapi-generator-cli-6.6.0.jar generate -i 20230210_API-Retoure-v1-CIG.yaml -g php --git-user-id nogrod --git-repo-id dhl-retoure-php-sdk --artifact-version 0.0.1 --additional-properties invokerPackage=Dhl\Rest\Retoure

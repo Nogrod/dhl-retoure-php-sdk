@@ -224,8 +224,8 @@ definitions:
   CustomsDocument:
     type: object
     description: >-
-      A customs form ("CN23") is only needed for returns from outside the EEC
-      (e.g. Switzerland).
+      A customs form (CN23) and the respective data transmission is mandatory for returns with the DHL Retoure International from outside the European Union to facilitate customs processes.
+       Please refer to the DHL Retoure International product information for an overview of the origin country specifics.
     properties:
       currency:
         type: string

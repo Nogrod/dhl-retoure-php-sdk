@@ -1,10 +1,10 @@
 # Dhl\Rest\Retoure\ReturnsApi
 
-All URIs are relative to https://cig.dhl.de/services/production/rest/returns.
+All URIs are relative to /services/sandbox/rest/returns, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**rootPost()**](ReturnsApi.md#rootPost) | **POST** / | Request for returnlabels.
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**rootPost()**](ReturnsApi.md#rootPost) | **POST** / | Request for returnlabels. |
 
 
 ## `rootPost()`
@@ -24,15 +24,15 @@ Contains all details needed to create a returnlabel.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
-// Configure HTTP basic authorization: appAuth
-$config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure API key authorization: userAuth
 $config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setApiKey('DPDHL-User-Authentication-Token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setApiKeyPrefix('DPDHL-User-Authentication-Token', 'Bearer');
+
+// Configure HTTP basic authorization: appAuth
+$config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
 
 
 $apiInstance = new Dhl\Rest\Retoure\Api\ReturnsApi(
@@ -53,9 +53,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **return_order** | [**\Dhl\Rest\Retoure\Model\ReturnOrder**](../Model/ReturnOrder.md)| The object contains the details of the sender, the returnshipment and references. | [optional]
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **return_order** | [**\Dhl\Rest\Retoure\Model\ReturnOrder**](../Model/ReturnOrder.md)| The object contains the details of the sender, the returnshipment and references. | [optional] |
 
 ### Return type
 
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[appAuth](../../README.md#appAuth), [userAuth](../../README.md#userAuth)
+[userAuth](../../README.md#userAuth), [appAuth](../../README.md#appAuth)
 
 ### HTTP request headers
 

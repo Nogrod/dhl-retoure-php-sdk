@@ -52,8 +52,8 @@ The authentication of the partner system is given by the `DPDHL-User-Authenticat
 
 ### Requirements
 
-PHP 7.3 and later.
-Should also work with PHP 8.0 but has not been tested.
+PHP 7.4 and later.
+Should also work with PHP 8.0.
 
 ### Composer
 
@@ -94,15 +94,15 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 
 
-// Configure HTTP basic authorization: appAuth
-$config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
 // Configure API key authorization: userAuth
 $config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setApiKey('DPDHL-User-Authentication-Token', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 // $config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setApiKeyPrefix('DPDHL-User-Authentication-Token', 'Bearer');
+
+// Configure HTTP basic authorization: appAuth
+$config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()
+              ->setUsername('YOUR_USERNAME')
+              ->setPassword('YOUR_PASSWORD');
 
 
 $apiInstance = new Dhl\Rest\Retoure\Api\ReturnsApi(
@@ -124,7 +124,7 @@ try {
 
 ## API Endpoints
 
-All URIs are relative to *https://cig.dhl.de/services/production/rest/returns*
+All URIs are relative to */services/sandbox/rest/returns*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -142,10 +142,10 @@ Class | Method | HTTP request | Description
 
 ## Authorization
 
+Authentication schemes defined for the API:
 ### appAuth
 
 - **Type**: HTTP basic authentication
-
 
 ### userAuth
 
