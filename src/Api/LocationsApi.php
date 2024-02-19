@@ -127,7 +127,7 @@ class LocationsApi
      *
      * Get available return locations
      *
-     * @param  Country|null $country_code The ISO3 code of the location (optional)
+     * @param  \Dhl\Rest\Retoure\Model\Country|null $country_code The ISO3 code of the location (optional)
      * @param  string|null $postal_code The postal code code of the location (optional)
      * @param  string|null $receiver_id The receiver id of the location (optional)
      * @param  string|null $billing_number billing_number (optional)
@@ -139,7 +139,7 @@ class LocationsApi
      * @return \Dhl\Rest\Retoure\Model\Receiver[]|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus
      */
     public function getLocations(
-        ?Country $country_code = null,
+        ?\Dhl\Rest\Retoure\Model\Country $country_code = null,
         ?string $postal_code = null,
         ?string $receiver_id = null,
         ?string $billing_number = null,
@@ -156,7 +156,7 @@ class LocationsApi
      *
      * Get available return locations
      *
-     * @param  Country|null $country_code The ISO3 code of the location (optional)
+     * @param  \Dhl\Rest\Retoure\Model\Country|null $country_code The ISO3 code of the location (optional)
      * @param  string|null $postal_code The postal code code of the location (optional)
      * @param  string|null $receiver_id The receiver id of the location (optional)
      * @param  string|null $billing_number (optional)
@@ -168,7 +168,7 @@ class LocationsApi
      * @return array of \Dhl\Rest\Retoure\Model\Receiver[]|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus, HTTP status code, HTTP response headers (array of strings)
      */
     public function getLocationsWithHttpInfo(
-        ?Country $country_code = null,
+        ?\Dhl\Rest\Retoure\Model\Country $country_code = null,
         ?string $postal_code = null,
         ?string $receiver_id = null,
         ?string $billing_number = null,
@@ -466,7 +466,7 @@ class LocationsApi
      *
      * Get available return locations
      *
-     * @param  Country|null $country_code The ISO3 code of the location (optional)
+     * @param  \Dhl\Rest\Retoure\Model\Country|null $country_code The ISO3 code of the location (optional)
      * @param  string|null $postal_code The postal code code of the location (optional)
      * @param  string|null $receiver_id The receiver id of the location (optional)
      * @param  string|null $billing_number (optional)
@@ -477,7 +477,7 @@ class LocationsApi
      * @return PromiseInterface
      */
     public function getLocationsAsync(
-        ?Country $country_code = null,
+        ?\Dhl\Rest\Retoure\Model\Country $country_code = null,
         ?string $postal_code = null,
         ?string $receiver_id = null,
         ?string $billing_number = null,
@@ -498,7 +498,7 @@ class LocationsApi
      *
      * Get available return locations
      *
-     * @param  Country|null $country_code The ISO3 code of the location (optional)
+     * @param  \Dhl\Rest\Retoure\Model\Country|null $country_code The ISO3 code of the location (optional)
      * @param  string|null $postal_code The postal code code of the location (optional)
      * @param  string|null $receiver_id The receiver id of the location (optional)
      * @param  string|null $billing_number (optional)
@@ -559,7 +559,7 @@ class LocationsApi
     /**
      * Create request for operation 'getLocations'
      *
-     * @param  Country|null $country_code The ISO3 code of the location (optional)
+     * @param  \Dhl\Rest\Retoure\Model\Country|null $country_code The ISO3 code of the location (optional)
      * @param  string|null $postal_code The postal code code of the location (optional)
      * @param  string|null $receiver_id The receiver id of the location (optional)
      * @param  string|null $billing_number (optional)
@@ -611,7 +611,7 @@ class LocationsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $country_code,
             'countryCode', // param base name
-            'Country', // openApiType
+            '\Dhl\Rest\Retoure\Model\Country', // openApiType
             'form', // style
             true, // explode
             false // required

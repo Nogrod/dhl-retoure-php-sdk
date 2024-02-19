@@ -127,7 +127,7 @@ class OrdersApi
      *
      * Create a return label.
      *
-     * @param  LabelType|null $label_type Controls which documents are returned. (optional)
+     * @param  \Dhl\Rest\Retoure\Model\LabelType|null $label_type Controls which documents are returned. (optional)
      * @param  \Dhl\Rest\Retoure\Model\ReturnOrder|null $return_order The request body contains the details of the return label that should be created. E.g. sender, references and shipment details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReturnOrder'] to see the possible values for this operation
      *
@@ -136,7 +136,7 @@ class OrdersApi
      * @return \Dhl\Rest\Retoure\Model\ReturnOrderConfirmation|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus
      */
     public function createReturnOrder(
-        ?LabelType $label_type = null,
+        ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
     ): \Dhl\Rest\Retoure\Model\ReturnOrderConfirmation
@@ -150,7 +150,7 @@ class OrdersApi
      *
      * Create a return label.
      *
-     * @param  LabelType|null $label_type Controls which documents are returned. (optional)
+     * @param  \Dhl\Rest\Retoure\Model\LabelType|null $label_type Controls which documents are returned. (optional)
      * @param  \Dhl\Rest\Retoure\Model\ReturnOrder|null $return_order The request body contains the details of the return label that should be created. E.g. sender, references and shipment details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReturnOrder'] to see the possible values for this operation
      *
@@ -159,7 +159,7 @@ class OrdersApi
      * @return array of \Dhl\Rest\Retoure\Model\ReturnOrderConfirmation|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus|\Dhl\Rest\Retoure\Model\JSONStatus, HTTP status code, HTTP response headers (array of strings)
      */
     public function createReturnOrderWithHttpInfo(
-        ?LabelType $label_type = null,
+        ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
     ): array
@@ -454,7 +454,7 @@ class OrdersApi
      *
      * Create a return label.
      *
-     * @param  LabelType|null $label_type Controls which documents are returned. (optional)
+     * @param  \Dhl\Rest\Retoure\Model\LabelType|null $label_type Controls which documents are returned. (optional)
      * @param  \Dhl\Rest\Retoure\Model\ReturnOrder|null $return_order The request body contains the details of the return label that should be created. E.g. sender, references and shipment details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReturnOrder'] to see the possible values for this operation
      *
@@ -462,7 +462,7 @@ class OrdersApi
      * @return PromiseInterface
      */
     public function createReturnOrderAsync(
-        ?LabelType $label_type = null,
+        ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
     ): PromiseInterface
@@ -480,7 +480,7 @@ class OrdersApi
      *
      * Create a return label.
      *
-     * @param  LabelType|null $label_type Controls which documents are returned. (optional)
+     * @param  \Dhl\Rest\Retoure\Model\LabelType|null $label_type Controls which documents are returned. (optional)
      * @param  \Dhl\Rest\Retoure\Model\ReturnOrder|null $return_order The request body contains the details of the return label that should be created. E.g. sender, references and shipment details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReturnOrder'] to see the possible values for this operation
      *
@@ -535,7 +535,7 @@ class OrdersApi
     /**
      * Create request for operation 'createReturnOrder'
      *
-     * @param  LabelType|null $label_type Controls which documents are returned. (optional)
+     * @param  \Dhl\Rest\Retoure\Model\LabelType|null $label_type Controls which documents are returned. (optional)
      * @param  \Dhl\Rest\Retoure\Model\ReturnOrder|null $return_order The request body contains the details of the return label that should be created. E.g. sender, references and shipment details. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createReturnOrder'] to see the possible values for this operation
      *
@@ -563,7 +563,7 @@ class OrdersApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $label_type,
             'labelType', // param base name
-            'LabelType', // openApiType
+            '\Dhl\Rest\Retoure\Model\LabelType', // openApiType
             'form', // style
             true, // explode
             false // required
