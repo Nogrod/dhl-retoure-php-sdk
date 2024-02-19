@@ -4,15 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**receiver_id** | **string** |  |
-**customer_reference** | **string** |  | [optional]
-**shipment_reference** | **string** |  | [optional]
-**sender_address** | [**\Dhl\Rest\Retoure\Model\SimpleAddress**](SimpleAddress.md) |  |
-**email** | **string** |  | [optional]
-**telephone_number** | **string** |  | [optional]
-**weight_in_grams** | **int** |  | [optional]
-**value** | **float** |  | [optional]
-**customs_document** | [**\Dhl\Rest\Retoure\Model\CustomsDocument**](CustomsDocument.md) |  | [optional]
-**return_document_type** | **string** | The type of document(s) to return in the response&#39;:&#39; The SHIPMENT_LABEL only, the QR_LABEL or BOTH. | [optional]
+**receiver_id** | **string** | the receiver id of the return shipment |
+**customer_reference** | **string** | The customer reference may be used to identify the original customer order. The first 30 characters are visibly printed on the returns label. | [optional]
+**shipment_reference** | **string** | The shipment reference may be used to identify the returns shipment. It is not visibly printed on the returns label but only displayed in the returns overview of the Post &amp; DHL Business Customer Portal. | [optional]
+**shipper** | [**\Dhl\Rest\Retoure\Model\ContactAddress**](ContactAddress.md) |  |
+**item_weight** | [**\Dhl\Rest\Retoure\Model\Weight**](Weight.md) |  | [optional]
+**item_value** | [**\Dhl\Rest\Retoure\Model\Value**](Value.md) |  | [optional]
+**customs_details** | [**\Dhl\Rest\Retoure\Model\CustomsDetails**](CustomsDetails.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

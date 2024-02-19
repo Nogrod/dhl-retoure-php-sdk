@@ -1,4 +1,4 @@
-# # Country
+# # LabelType
 
 ## Properties
 
