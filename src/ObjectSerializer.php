@@ -241,6 +241,10 @@ class ObjectSerializer
             return ["{$paramName}" => $value->format(self::$dateTimeFormat)];
         }
 
+        if ($value instanceof \BackedEnum) {
+            return $data->value;
+        }
+
         $query = [];
         $value = (in_array($openApiType, ['object', 'array'], true)) ? (array)$value : $value;
 
