@@ -41,7 +41,7 @@ $apiInstance = new Dhl\Rest\Retoure\Api\LocationsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$country_code = new \Dhl\Rest\Retoure\Model\Country(); // Country | The ISO3 code of the location
+$country_code = new \Dhl\Rest\Retoure\Model\\Dhl\Rest\Retoure\Model\Country(); // \Dhl\Rest\Retoure\Model\Country | The ISO3 code of the location
 $postal_code = 'postal_code_example'; // string | The postal code code of the location
 $receiver_id = 'receiver_id_example'; // string | The receiver id of the location
 $billing_number = 'billing_number_example'; // string
@@ -59,7 +59,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **country_code** | [**Country**](../Model/.md)| The ISO3 code of the location | [optional] |
+| **country_code** | [**\Dhl\Rest\Retoure\Model\Country**](../Model/.md)| The ISO3 code of the location | [optional] |
 | **postal_code** | **string**| The postal code code of the location | [optional] |
 | **receiver_id** | **string**| The receiver id of the location | [optional] |
 | **billing_number** | **string**|  | [optional] |

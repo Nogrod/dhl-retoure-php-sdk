@@ -41,7 +41,7 @@ $apiInstance = new Dhl\Rest\Retoure\Api\OrdersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$label_type = new \Dhl\Rest\Retoure\Model\LabelType(); // LabelType | Controls which documents are returned.
+$label_type = new \Dhl\Rest\Retoure\Model\\Dhl\Rest\Retoure\Model\LabelType(); // \Dhl\Rest\Retoure\Model\LabelType | Controls which documents are returned.
 $return_order = new \Dhl\Rest\Retoure\Model\ReturnOrder(); // \Dhl\Rest\Retoure\Model\ReturnOrder | The request body contains the details of the return label that should be created. E.g. sender, references and shipment details.
 
 try {
@@ -56,7 +56,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **label_type** | [**LabelType**](../Model/.md)| Controls which documents are returned. | [optional] |
+| **label_type** | [**\Dhl\Rest\Retoure\Model\LabelType**](../Model/.md)| Controls which documents are returned. | [optional] |
 | **return_order** | [**\Dhl\Rest\Retoure\Model\ReturnOrder**](../Model/ReturnOrder.md)| The request body contains the details of the return label that should be created. E.g. sender, references and shipment details. | [optional] |
 
 ### Return type
