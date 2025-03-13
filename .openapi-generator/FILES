@@ -4,6 +4,7 @@
 .travis.yml
 README.md
 composer.json
+docs/Api/GeneralApi.md
 docs/Api/LocationsApi.md
 docs/Api/OrdersApi.md
 docs/Model/Commodity.md
@@ -18,10 +19,13 @@ docs/Model/Receiver.md
 docs/Model/ReturnOrder.md
 docs/Model/ReturnOrderConfirmation.md
 docs/Model/ReturnOrderConfirmationSstatus.md
+docs/Model/RootGet200Response.md
+docs/Model/RootGet200ResponseAmp.md
 docs/Model/Value.md
 docs/Model/Weight.md
 git_push.sh
 phpunit.xml.dist
+src/Api/GeneralApi.php
 src/Api/LocationsApi.php
 src/Api/OrdersApi.php
 src/ApiException.php
@@ -40,6 +44,11 @@ src/Model/Receiver.php
 src/Model/ReturnOrder.php
 src/Model/ReturnOrderConfirmation.php
 src/Model/ReturnOrderConfirmationSstatus.php
+src/Model/RootGet200Response.php
+src/Model/RootGet200ResponseAmp.php
 src/Model/Value.php
 src/Model/Weight.php
 src/ObjectSerializer.php
+tests/Api/GeneralApiTest.php
+tests/Model/RootGet200ResponseAmpTest.php
+tests/Model/RootGet200ResponseTest.php

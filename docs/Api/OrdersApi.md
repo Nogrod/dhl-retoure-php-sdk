@@ -24,6 +24,9 @@ Creates a return label by given information.
 require_once(__DIR__ . '/vendor/autoload.php');
 
 
+// Configure OAuth2 access token for authorization: OAuth2
+$config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+
 // Configure API key authorization: ApiKey
 $config = Dhl\Rest\Retoure\Configuration::getDefaultConfiguration()->setApiKey('dhl-api-key', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -65,7 +68,7 @@ try {
 
 ### Authorization
 
-[ApiKey](../../README.md#ApiKey), [BasicAuth](../../README.md#BasicAuth)
+[OAuth2](../../README.md#OAuth2), [ApiKey](../../README.md#ApiKey), [BasicAuth](../../README.md#BasicAuth)
 
 ### HTTP request headers
 

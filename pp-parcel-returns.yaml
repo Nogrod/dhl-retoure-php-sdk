@@ -1,6 +1,6 @@
 openapi: '3.0.0'
 info:
-  version: 1.0.4
+  version: 1.0.8
   title: Parcel DE Returns API
   description: >
     # Introduction
@@ -18,6 +18,19 @@ info:
     ## Querying to get receiver locations
 
     The single scenario supported by this service is the determination of the receiver's location. This is achieved by getting a location to the URI '/rest/locations'. The service will respond with a Receiver.
+    
+    # Technical Note on Authorization
+    
+    This API supports __two alternative ways__ to authorize yourself:
+    
+    1. Combination of Apikey and Basic Authentication which you can provide with every call.
+    
+    2. OAuth2 Password Flow: After having obtained your access token once, you provide this token as bearer token. 
+    
+    
+    You can try it out here. More details can be found when clicking on "Authorize".
+    
+    
 
 servers:
   - description: Sandbox Environment (Customer Testing)
@@ -25,7 +38,52 @@ servers:
   - description: Production Environment
     url: https://api-eu.dhl.com/parcel/de/shipping/returns/v1
 
+tags:
+  - name: General
+    description: Get API version info
+  - name: Orders
+    description: Order and retrieve return labels
+  - name: Locations
+    description: Get return locations
 paths:
+  /:
+    summary: general functionality
+    
+    get:
+      description: Returns the current version of the API as major.minor.patch. Supports content negotiation (json and html) and does __not__ require authentication. This can be used as healthcheck or to identify which version of the API is being used. 
+      summary: Return API version
+      operationId: rootGet
+      tags:
+        - General
+      security: []   # No auth
+    
+      responses:
+        '200':
+          description: Major, minor, and build number being returned as x.y.z
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  amp:
+                    type: object
+                    properties: 
+                      name: 
+                        type: string 
+                        example: pp-parcel-returns
+                      version:
+                        type: string
+                        description: "Sandbox version is >= Prod version"
+                        pattern: '^v\d{1,2}.\d{1,2}[.\d{1,5}]$'
+                        example: 'v1.0.0'
+                      rev: 
+                        type: string
+                        example: '13'
+                      env: 
+                        type: string
+                        example: dev
+
+ 
   /orders:
     post:
       operationId: createReturnOrder
@@ -145,9 +203,13 @@ components:
           minLength: 0
           maxLength: 50
           description: The shipment reference may be used to identify the returns shipment. It is not visibly printed on the returns label but only displayed in the returns overview of the Post & DHL Business Customer Portal.                                                            
+        creationSoftware:
+         type: string
+         maxLength: 35
+         minLength: 0
+         description: Is only to be indicated by DHL partners.
         shipper:
-          $ref: '#/components/schemas/ContactAddress'
-          description: Address of the shipper.                                              
+          $ref: '#/components/schemas/ContactAddress'                                         
         itemWeight:
           $ref: '#/components/schemas/Weight'
         itemValue:
@@ -276,7 +338,7 @@ components:
           maxItems: 20
           description: The customs items to be declared.
       required:
-        - positions
+        - items
     Commodity:
       type: object
       description: Represents a declared item in customs declaration.
@@ -325,6 +387,10 @@ components:
           $ref: '#/components/schemas/Document'
         qrLabel:
           $ref: '#/components/schemas/Document'
+        qrLink:
+          type: string
+          minLength: 0
+          description: Deep link to import the QR Code to the Post & DHL App
         routingCode:
           type: string
           description: Routing code of the returnlabel.
@@ -414,6 +480,7 @@ components:
       - lux
       - mlt
       - nld
+      - nor
       - aut
       - pol
       - prt
@@ -695,7 +762,7 @@ components:
     Email:
       description: contact email address
       format: email
-      maxLength: 80
+      maxLength: 70
       minLength: 3
       type: string
       example: "max@mustermann.de"
@@ -780,6 +847,7 @@ components:
               detail: "Too Many Requests - You have exceeded the maximum number of requests per time unit."
   examples:
     returnlabel_deu:
+      summary: Return label
       value:
         receiverId: deu
         customerReference: Kundenreferenz
@@ -801,6 +869,7 @@ components:
             currency: EUR
             value: 10
     returnlabel_che:
+      summary: Return label with customs
       value:
         receiverId: che
         customerReference: Kundenreferenz
@@ -854,6 +923,15 @@ components:
         portal](https://developer.dhl.com).
       name: dhl-api-key
       in: header
+    
+    OAuth2:
+      type: oauth2
+      description: See https://developer.dhl.com/api-reference/authentication-api-post-parcel-germany. For the POST call to get a token, provide all parameters in the request body. Refer to the above link for details, or to the RFC describing OAuth2 Password Grant. After having obtained the access token, use this as Bearer token in the HTTP authorization header. 
+      flows: 
+        password: 
+          tokenUrl: /parcel/de/account/auth/ropc/v1/token
+          scopes: {}
 security:
     - ApiKey: []
     - BasicAuth: []
+    - OAuth2: []
