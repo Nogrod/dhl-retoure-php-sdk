@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LocationsApi
  * PHP version 8.1
@@ -145,8 +146,7 @@ class LocationsApi
         ?string $billing_number = null,
         ?int $max_result = null,
         string $contentType = self::contentTypes['getLocations'][0]
-    ): array|\Dhl\Rest\Retoure\Model\JSONStatus
-    {
+    ): array|\Dhl\Rest\Retoure\Model\JSONStatus {
         list($response) = $this->getLocationsWithHttpInfo($country_code, $postal_code, $receiver_id, $billing_number, $max_result, $contentType);
         return $response;
     }
@@ -174,8 +174,7 @@ class LocationsApi
         ?string $billing_number = null,
         ?int $max_result = null,
         string $contentType = self::contentTypes['getLocations'][0]
-    ): array
-    {
+    ): array {
         $request = $this->getLocationsRequest($country_code, $postal_code, $receiver_id, $billing_number, $max_result, $contentType);
 
         try {
@@ -201,9 +200,9 @@ class LocationsApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
-                    if (in_array('\Dhl\Rest\Retoure\Model\Receiver[]', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\Receiver[]', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -230,7 +229,7 @@ class LocationsApi
                         $response->getHeaders()
                     ];
                 case 400:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -257,7 +256,7 @@ class LocationsApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -284,7 +283,7 @@ class LocationsApi
                         $response->getHeaders()
                     ];
                 case 403:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -311,7 +310,7 @@ class LocationsApi
                         $response->getHeaders()
                     ];
                 case 422:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -338,7 +337,7 @@ class LocationsApi
                         $response->getHeaders()
                     ];
                 case 429:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -380,7 +379,7 @@ class LocationsApi
             }
 
             $returnType = '\Dhl\Rest\Retoure\Model\Receiver[]';
-            if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+            if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
@@ -484,8 +483,7 @@ class LocationsApi
         ?string $billing_number = null,
         ?int $max_result = null,
         string $contentType = self::contentTypes['getLocations'][0]
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->getLocationsAsyncWithHttpInfo($country_code, $postal_code, $receiver_id, $billing_number, $max_result, $contentType)
             ->then(
                 function ($response) {
@@ -516,8 +514,7 @@ class LocationsApi
         ?string $billing_number = null,
         ?int $max_result = null,
         string $contentType = self::contentTypes['getLocations'][0]
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $returnType = '\Dhl\Rest\Retoure\Model\Receiver[]';
         $request = $this->getLocationsRequest($country_code, $postal_code, $receiver_id, $billing_number, $max_result, $contentType);
 
@@ -525,7 +522,7 @@ class LocationsApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -577,8 +574,7 @@ class LocationsApi
         ?string $billing_number = null,
         ?int $max_result = null,
         string $contentType = self::contentTypes['getLocations'][0]
-    ): Request
-    {
+    ): Request {
 
 
         if ($postal_code !== null && strlen($postal_code) > 10) {
@@ -590,15 +586,15 @@ class LocationsApi
         if ($postal_code !== null && !preg_match("/^[0-9A-Za-z]+([ -]?[0-9A-Za-z]+)*$/", $postal_code)) {
             throw new InvalidArgumentException("invalid value for \"postal_code\" when calling LocationsApi.getLocations, must conform to the pattern /^[0-9A-Za-z]+([ -]?[0-9A-Za-z]+)*$/.");
         }
-        
+
         if ($receiver_id !== null && strlen($receiver_id) > 50) {
             throw new InvalidArgumentException('invalid length for "$receiver_id" when calling LocationsApi.getLocations, must be smaller than or equal to 50.');
         }
-        
+
         if ($billing_number !== null && !preg_match("/\\d{10}\\d{2}\\w{2}/", $billing_number)) {
             throw new InvalidArgumentException("invalid value for \"billing_number\" when calling LocationsApi.getLocations, must conform to the pattern /\\d{10}\\d{2}\\w{2}/.");
         }
-        
+
 
 
         $resourcePath = '/locations';
@@ -612,7 +608,7 @@ class LocationsApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $country_code?->value,
             'countryCode', // param base name
-            '\Dhl\Rest\Retoure\Model\Country', // openApiType
+            'Country', // openApiType
             'form', // style
             true, // explode
             false // required

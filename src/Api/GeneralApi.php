@@ -1,4 +1,5 @@
 <?php
+
 /**
  * GeneralApi
  * PHP version 8.1
@@ -135,8 +136,7 @@ class GeneralApi
      */
     public function rootGet(
         string $contentType = self::contentTypes['rootGet'][0]
-    ): \Dhl\Rest\Retoure\Model\RootGet200Response
-    {
+    ): \Dhl\Rest\Retoure\Model\RootGet200Response {
         list($response) = $this->rootGetWithHttpInfo($contentType);
         return $response;
     }
@@ -154,8 +154,7 @@ class GeneralApi
      */
     public function rootGetWithHttpInfo(
         string $contentType = self::contentTypes['rootGet'][0]
-    ): array
-    {
+    ): array {
         $request = $this->rootGetRequest($contentType);
 
         try {
@@ -181,9 +180,9 @@ class GeneralApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 200:
-                    if (in_array('\Dhl\Rest\Retoure\Model\RootGet200Response', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\RootGet200Response', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -225,7 +224,7 @@ class GeneralApi
             }
 
             $returnType = '\Dhl\Rest\Retoure\Model\RootGet200Response';
-            if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+            if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
@@ -279,8 +278,7 @@ class GeneralApi
      */
     public function rootGetAsync(
         string $contentType = self::contentTypes['rootGet'][0]
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->rootGetAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
@@ -301,8 +299,7 @@ class GeneralApi
      */
     public function rootGetAsyncWithHttpInfo(
         string $contentType = self::contentTypes['rootGet'][0]
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $returnType = '\Dhl\Rest\Retoure\Model\RootGet200Response';
         $request = $this->rootGetRequest($contentType);
 
@@ -310,7 +307,7 @@ class GeneralApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -352,8 +349,7 @@ class GeneralApi
      */
     public function rootGetRequest(
         string $contentType = self::contentTypes['rootGet'][0]
-    ): Request
-    {
+    ): Request {
 
 
         $resourcePath = '/';

@@ -1,1 +1,0 @@
-java -jar openapi-generator-cli.jar generate -i pp-parcel-returns.yaml -g php-nextgen --git-user-id nogrod --git-repo-id dhl-retoure-php-sdk --additional-properties invokerPackage=Dhl\Rest\Retoure

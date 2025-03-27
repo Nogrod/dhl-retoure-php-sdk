@@ -1,4 +1,5 @@
 <?php
+
 /**
  * OrdersApi
  * PHP version 8.1
@@ -139,8 +140,7 @@ class OrdersApi
         ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
-    ): \Dhl\Rest\Retoure\Model\ReturnOrderConfirmation|\Dhl\Rest\Retoure\Model\JSONStatus
-    {
+    ): \Dhl\Rest\Retoure\Model\ReturnOrderConfirmation|\Dhl\Rest\Retoure\Model\JSONStatus {
         list($response) = $this->createReturnOrderWithHttpInfo($label_type, $return_order, $contentType);
         return $response;
     }
@@ -162,8 +162,7 @@ class OrdersApi
         ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
-    ): array
-    {
+    ): array {
         $request = $this->createReturnOrderRequest($label_type, $return_order, $contentType);
 
         try {
@@ -189,9 +188,9 @@ class OrdersApi
             $statusCode = $response->getStatusCode();
 
 
-            switch($statusCode) {
+            switch ($statusCode) {
                 case 201:
-                    if (in_array('\Dhl\Rest\Retoure\Model\ReturnOrderConfirmation', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\ReturnOrderConfirmation', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -218,7 +217,7 @@ class OrdersApi
                         $response->getHeaders()
                     ];
                 case 400:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -245,7 +244,7 @@ class OrdersApi
                         $response->getHeaders()
                     ];
                 case 401:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -272,7 +271,7 @@ class OrdersApi
                         $response->getHeaders()
                     ];
                 case 403:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -299,7 +298,7 @@ class OrdersApi
                         $response->getHeaders()
                     ];
                 case 422:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -326,7 +325,7 @@ class OrdersApi
                         $response->getHeaders()
                     ];
                 case 429:
-                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array('\Dhl\Rest\Retoure\Model\JSONStatus', ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -368,7 +367,7 @@ class OrdersApi
             }
 
             $returnType = '\Dhl\Rest\Retoure\Model\ReturnOrderConfirmation';
-            if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+            if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
@@ -466,8 +465,7 @@ class OrdersApi
         ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         return $this->createReturnOrderAsyncWithHttpInfo($label_type, $return_order, $contentType)
             ->then(
                 function ($response) {
@@ -492,8 +490,7 @@ class OrdersApi
         ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
-    ): PromiseInterface
-    {
+    ): PromiseInterface {
         $returnType = '\Dhl\Rest\Retoure\Model\ReturnOrderConfirmation';
         $request = $this->createReturnOrderRequest($label_type, $return_order, $contentType);
 
@@ -501,7 +498,7 @@ class OrdersApi
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'])) {
+                    if (in_array($returnType, ['\SplFileObject', '\Psr\Http\Message\StreamInterface'], true)) {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
@@ -547,8 +544,7 @@ class OrdersApi
         ?\Dhl\Rest\Retoure\Model\LabelType $label_type = null,
         ?\Dhl\Rest\Retoure\Model\ReturnOrder $return_order = null,
         string $contentType = self::contentTypes['createReturnOrder'][0]
-    ): Request
-    {
+    ): Request {
 
 
 
@@ -564,7 +560,7 @@ class OrdersApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $label_type?->value,
             'labelType', // param base name
-            '\Dhl\Rest\Retoure\Model\LabelType', // openApiType
+            'LabelType', // openApiType
             'form', // style
             true, // explode
             false // required

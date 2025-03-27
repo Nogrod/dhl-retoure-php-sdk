@@ -1,4 +1,3 @@
-.gitignore
 .php-cs-fixer.dist.php
 .phplint.yml
 .travis.yml
@@ -50,5 +49,21 @@ src/Model/Value.php
 src/Model/Weight.php
 src/ObjectSerializer.php
 tests/Api/GeneralApiTest.php
+tests/Api/LocationsApiTest.php
+tests/Api/OrdersApiTest.php
+tests/Model/CommodityTest.php
+tests/Model/ContactAddressTest.php
+tests/Model/CountryOfOriginTest.php
+tests/Model/CountryTest.php
+tests/Model/CustomsDetailsTest.php
+tests/Model/DocumentTest.php
+tests/Model/JSONStatusTest.php
+tests/Model/LabelTypeTest.php
+tests/Model/ReceiverTest.php
+tests/Model/ReturnOrderConfirmationSstatusTest.php
+tests/Model/ReturnOrderConfirmationTest.php
+tests/Model/ReturnOrderTest.php
 tests/Model/RootGet200ResponseAmpTest.php
 tests/Model/RootGet200ResponseTest.php
+tests/Model/ValueTest.php
+tests/Model/WeightTest.php

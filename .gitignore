@@ -21,3 +21,8 @@ build/phplint.cache
 *.jar
 
 .idea
+
+*.ps1
+
+*.bat
+

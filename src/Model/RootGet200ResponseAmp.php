@@ -1,4 +1,5 @@
 <?php
+
 /**
  * RootGet200ResponseAmp
  *
@@ -488,7 +489,7 @@ class RootGet200ResponseAmp implements ModelInterface, ArrayAccess, JsonSerializ
     #[ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

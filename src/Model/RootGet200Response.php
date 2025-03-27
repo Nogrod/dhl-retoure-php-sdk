@@ -1,4 +1,5 @@
 <?php
+
 /**
  * RootGet200Response
  *
@@ -377,7 +378,7 @@ class RootGet200Response implements ModelInterface, ArrayAccess, JsonSerializabl
     #[ReturnTypeWillChange]
     public function jsonSerialize(): mixed
     {
-       return ObjectSerializer::sanitizeForSerialization($this);
+        return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**
