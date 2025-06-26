@@ -17,7 +17,6 @@ docs/Model/LabelType.md
 docs/Model/Receiver.md
 docs/Model/ReturnOrder.md
 docs/Model/ReturnOrderConfirmation.md
-docs/Model/ReturnOrderConfirmationSstatus.md
 docs/Model/RootGet200Response.md
 docs/Model/RootGet200ResponseAmp.md
 docs/Model/Value.md
@@ -29,6 +28,7 @@ src/Api/LocationsApi.php
 src/Api/OrdersApi.php
 src/ApiException.php
 src/Configuration.php
+src/FormDataProcessor.php
 src/HeaderSelector.php
 src/Model/Commodity.php
 src/Model/ContactAddress.php
@@ -42,7 +42,6 @@ src/Model/ModelInterface.php
 src/Model/Receiver.php
 src/Model/ReturnOrder.php
 src/Model/ReturnOrderConfirmation.php
-src/Model/ReturnOrderConfirmationSstatus.php
 src/Model/RootGet200Response.php
 src/Model/RootGet200ResponseAmp.php
 src/Model/Value.php

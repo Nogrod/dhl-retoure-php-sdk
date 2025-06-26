@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sstatus** | [**\Dhl\Rest\Retoure\Model\ReturnOrderConfirmationSstatus**](ReturnOrderConfirmationSstatus.md) |  |
+**sstatus** | [**\Dhl\Rest\Retoure\Model\JSONStatus**](JSONStatus.md) |  |
 **shipment_no** | **string** |  |
 **international_shipment_no** | **string** |  | [optional]
 **label** | [**\Dhl\Rest\Retoure\Model\Document**](Document.md) |  |
