@@ -19,6 +19,7 @@ docs/Model/ReturnOrder.md
 docs/Model/ReturnOrderConfirmation.md
 docs/Model/RootGet200Response.md
 docs/Model/RootGet200ResponseAmp.md
+docs/Model/VAS.md
 docs/Model/Value.md
 docs/Model/Weight.md
 git_push.sh
@@ -44,6 +45,8 @@ src/Model/ReturnOrder.php
 src/Model/ReturnOrderConfirmation.php
 src/Model/RootGet200Response.php
 src/Model/RootGet200ResponseAmp.php
+src/Model/VAS.php
 src/Model/Value.php
 src/Model/Weight.php
 src/ObjectSerializer.php
+tests/Model/VASTest.php

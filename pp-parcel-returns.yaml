@@ -1,6 +1,6 @@
 openapi: '3.0.0'
 info:
-  version: 1.0.8
+  version: 1.0.9
   title: Parcel DE Returns API
   description: >
     # Introduction
@@ -109,6 +109,8 @@ paths:
             examples:
               returnlabel_deu:
                 $ref: '#/components/examples/returnlabel_deu'
+              returnlabel_deu_ggp:
+                $ref: '#/components/examples/returnlabel_deu_ggp'
               returnlabel_che:
                 $ref: '#/components/examples/returnlabel_che'
       responses:
@@ -216,6 +218,8 @@ components:
           $ref: '#/components/schemas/Value'
         customsDetails:
           $ref: '#/components/schemas/CustomsDetails'
+        services:
+          $ref: '#/components/schemas/VAS'
       required:
         - shipper
         - receiverId
@@ -782,6 +786,14 @@ components:
           minimum: 0
           maximum: 100000
           multipleOf: 0.01
+    VAS:
+      description: Value added services. Please note that services are specific to products and geographies and/or may require individual setup and billing numbers. Please test and contact your account representative in case of questions.
+      type: object
+      properties:
+        goGreenPlus:
+          type: boolean
+          description: 'GoGreen Plus enables sustainable shipping by investing in measures to reduce greenhouse gas emissions at DHL.'
+          example: true
     shipmentNo:
       type: string
       maxLength: 50
@@ -847,7 +859,7 @@ components:
               detail: "Too Many Requests - You have exceeded the maximum number of requests per time unit."
   examples:
     returnlabel_deu:
-      summary: Return label
+      summary: German domestic return label
       value:
         receiverId: deu
         customerReference: Kundenreferenz
@@ -868,6 +880,30 @@ components:
         itemValue: 
             currency: EUR
             value: 10
+    returnlabel_deu_ggp:
+      summary: German domestic label with GoGreen Plus
+      value:
+        receiverId: deu
+        customerReference: Kundenreferenz
+        shipmentReference: Sendungsreferenz
+        shipper: 
+            name1: Absender Retoure Zeile 1
+            name2: Absender Retoure Zeile 2
+            name3: Absender Retoure Zeile 3
+            addressStreet: Charles-de-Gaulle Str.
+            addressHouse: 20
+            postalCode: 53113
+            city: Bonn
+            email: Max.Mustermann@dhl.local
+            phone: +49 123456789
+        itemWeight: 
+            uom: kg
+            value: 1
+        itemValue: 
+            currency: EUR
+            value: 10
+        services:
+            goGreenPlus: true
     returnlabel_che:
       summary: Return label with customs
       value:

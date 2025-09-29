@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **item_weight** | [**\Dhl\Rest\Retoure\Model\Weight**](Weight.md) |  | [optional]
 **item_value** | [**\Dhl\Rest\Retoure\Model\Value**](Value.md) |  | [optional]
 **customs_details** | [**\Dhl\Rest\Retoure\Model\CustomsDetails**](CustomsDetails.md) |  | [optional]
+**services** | [**\Dhl\Rest\Retoure\Model\VAS**](VAS.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

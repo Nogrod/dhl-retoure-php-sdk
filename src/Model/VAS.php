@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Commodity
+ * VAS
  *
  * PHP version 8.1
  *
@@ -35,15 +35,15 @@ use ReturnTypeWillChange;
 use Dhl\Rest\Retoure\ObjectSerializer;
 
 /**
- * Commodity Class Doc Comment
+ * VAS Class Doc Comment
  *
- * @description Represents a declared item in customs declaration.
+ * @description Value added services. Please note that services are specific to products and geographies and/or may require individual setup and billing numbers. Please test and contact your account representative in case of questions.
  * @package  Dhl\Rest\Retoure
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements ArrayAccess<string, mixed>
  */
-class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
+class VAS implements ModelInterface, ArrayAccess, JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
       *
       * @var string
       */
-    protected static string $openAPIModelName = 'Commodity';
+    protected static string $openAPIModelName = 'VAS';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,12 +60,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string>
       */
     protected static array $openAPITypes = [
-        'item_description' => 'string',
-        'packaged_quantity' => 'int',
-        'country_of_origin' => '\Dhl\Rest\Retoure\Model\CountryOfOrigin',
-        'hs_code' => 'string',
-        'item_weight' => '\Dhl\Rest\Retoure\Model\Weight',
-        'item_value' => '\Dhl\Rest\Retoure\Model\Value'
+        'go_green_plus' => 'bool'
     ];
 
     /**
@@ -74,12 +69,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, string|null>
       */
     protected static array $openAPIFormats = [
-        'item_description' => null,
-        'packaged_quantity' => null,
-        'country_of_origin' => null,
-        'hs_code' => null,
-        'item_weight' => null,
-        'item_value' => null
+        'go_green_plus' => null
     ];
 
     /**
@@ -88,12 +78,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
       * @var array<string, bool>
       */
     protected static array $openAPINullables = [
-        'item_description' => false,
-        'packaged_quantity' => false,
-        'country_of_origin' => false,
-        'hs_code' => false,
-        'item_weight' => false,
-        'item_value' => false
+        'go_green_plus' => false
     ];
 
     /**
@@ -182,12 +167,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $attributeMap = [
-        'item_description' => 'itemDescription',
-        'packaged_quantity' => 'packagedQuantity',
-        'country_of_origin' => 'countryOfOrigin',
-        'hs_code' => 'hsCode',
-        'item_weight' => 'itemWeight',
-        'item_value' => 'itemValue'
+        'go_green_plus' => 'goGreenPlus'
     ];
 
     /**
@@ -196,12 +176,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $setters = [
-        'item_description' => 'setItemDescription',
-        'packaged_quantity' => 'setPackagedQuantity',
-        'country_of_origin' => 'setCountryOfOrigin',
-        'hs_code' => 'setHsCode',
-        'item_weight' => 'setItemWeight',
-        'item_value' => 'setItemValue'
+        'go_green_plus' => 'setGoGreenPlus'
     ];
 
     /**
@@ -210,12 +185,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
      * @var array<string, string>
      */
     protected static array $getters = [
-        'item_description' => 'getItemDescription',
-        'packaged_quantity' => 'getPackagedQuantity',
-        'country_of_origin' => 'getCountryOfOrigin',
-        'hs_code' => 'getHsCode',
-        'item_weight' => 'getItemWeight',
-        'item_value' => 'getItemValue'
+        'go_green_plus' => 'getGoGreenPlus'
     ];
 
     /**
@@ -274,12 +244,7 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('item_description', $data ?? [], null);
-        $this->setIfExists('packaged_quantity', $data ?? [], null);
-        $this->setIfExists('country_of_origin', $data ?? [], null);
-        $this->setIfExists('hs_code', $data ?? [], null);
-        $this->setIfExists('item_weight', $data ?? [], null);
-        $this->setIfExists('item_value', $data ?? [], null);
+        $this->setIfExists('go_green_plus', $data ?? [], null);
     }
 
     /**
@@ -309,30 +274,6 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['item_description'] === null) {
-            $invalidProperties[] = "'item_description' can't be null";
-        }
-        if ((mb_strlen($this->container['item_description']) > 50)) {
-            $invalidProperties[] = "invalid value for 'item_description', the character length must be smaller than or equal to 50.";
-        }
-
-        if ($this->container['packaged_quantity'] === null) {
-            $invalidProperties[] = "'packaged_quantity' can't be null";
-        }
-        if (!is_null($this->container['hs_code']) && (mb_strlen($this->container['hs_code']) > 11)) {
-            $invalidProperties[] = "invalid value for 'hs_code', the character length must be smaller than or equal to 11.";
-        }
-
-        if (!is_null($this->container['hs_code']) && (mb_strlen($this->container['hs_code']) < 6)) {
-            $invalidProperties[] = "invalid value for 'hs_code', the character length must be bigger than or equal to 6.";
-        }
-
-        if ($this->container['item_weight'] === null) {
-            $invalidProperties[] = "'item_weight' can't be null";
-        }
-        if ($this->container['item_value'] === null) {
-            $invalidProperties[] = "'item_value' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -349,174 +290,28 @@ class Commodity implements ModelInterface, ArrayAccess, JsonSerializable
 
 
     /**
-     * Gets item_description
+     * Gets go_green_plus
      *
-     * @return string
+     * @return bool|null
      */
-    public function getItemDescription(): string
+    public function getGoGreenPlus(): ?bool
     {
-        return $this->container['item_description'];
+        return $this->container['go_green_plus'];
     }
 
     /**
-     * Sets item_description
+     * Sets go_green_plus
      *
-     * @param string $item_description Description of the declared item.
+     * @param bool|null $go_green_plus GoGreen Plus enables sustainable shipping by investing in measures to reduce greenhouse gas emissions at DHL.
      *
      * @return $this
      */
-    public function setItemDescription(string $item_description): static
+    public function setGoGreenPlus(?bool $go_green_plus): static
     {
-        if (is_null($item_description)) {
-            throw new InvalidArgumentException('non-nullable item_description cannot be null');
+        if (is_null($go_green_plus)) {
+            throw new InvalidArgumentException('non-nullable go_green_plus cannot be null');
         }
-        if ((mb_strlen($item_description) > 50)) {
-            throw new InvalidArgumentException('invalid length for $item_description when calling Commodity., must be smaller than or equal to 50.');
-        }
-
-        $this->container['item_description'] = $item_description;
-
-        return $this;
-    }
-
-    /**
-     * Gets packaged_quantity
-     *
-     * @return int
-     */
-    public function getPackagedQuantity(): int
-    {
-        return $this->container['packaged_quantity'];
-    }
-
-    /**
-     * Sets packaged_quantity
-     *
-     * @param int $packaged_quantity Amount of the declared item(s).
-     *
-     * @return $this
-     */
-    public function setPackagedQuantity(int $packaged_quantity): static
-    {
-        if (is_null($packaged_quantity)) {
-            throw new InvalidArgumentException('non-nullable packaged_quantity cannot be null');
-        }
-        $this->container['packaged_quantity'] = $packaged_quantity;
-
-        return $this;
-    }
-
-    /**
-     * Gets country_of_origin
-     *
-     * @return \Dhl\Rest\Retoure\Model\CountryOfOrigin|null
-     */
-    public function getCountryOfOrigin(): ?\Dhl\Rest\Retoure\Model\CountryOfOrigin
-    {
-        return $this->container['country_of_origin'];
-    }
-
-    /**
-     * Sets country_of_origin
-     *
-     * @param \Dhl\Rest\Retoure\Model\CountryOfOrigin|null $country_of_origin country_of_origin
-     *
-     * @return $this
-     */
-    public function setCountryOfOrigin(?\Dhl\Rest\Retoure\Model\CountryOfOrigin $country_of_origin): static
-    {
-        if (is_null($country_of_origin)) {
-            throw new InvalidArgumentException('non-nullable country_of_origin cannot be null');
-        }
-        $this->container['country_of_origin'] = $country_of_origin;
-
-        return $this;
-    }
-
-    /**
-     * Gets hs_code
-     *
-     * @return string|null
-     */
-    public function getHsCode(): ?string
-    {
-        return $this->container['hs_code'];
-    }
-
-    /**
-     * Sets hs_code
-     *
-     * @param string|null $hs_code Harmonized System Code aka Customs tariff number.
-     *
-     * @return $this
-     */
-    public function setHsCode(?string $hs_code): static
-    {
-        if (is_null($hs_code)) {
-            throw new InvalidArgumentException('non-nullable hs_code cannot be null');
-        }
-        if ((mb_strlen($hs_code) > 11)) {
-            throw new InvalidArgumentException('invalid length for $hs_code when calling Commodity., must be smaller than or equal to 11.');
-        }
-        if ((mb_strlen($hs_code) < 6)) {
-            throw new InvalidArgumentException('invalid length for $hs_code when calling Commodity., must be bigger than or equal to 6.');
-        }
-
-        $this->container['hs_code'] = $hs_code;
-
-        return $this;
-    }
-
-    /**
-     * Gets item_weight
-     *
-     * @return \Dhl\Rest\Retoure\Model\Weight
-     */
-    public function getItemWeight(): \Dhl\Rest\Retoure\Model\Weight
-    {
-        return $this->container['item_weight'];
-    }
-
-    /**
-     * Sets item_weight
-     *
-     * @param \Dhl\Rest\Retoure\Model\Weight $item_weight item_weight
-     *
-     * @return $this
-     */
-    public function setItemWeight(\Dhl\Rest\Retoure\Model\Weight $item_weight): static
-    {
-        if (is_null($item_weight)) {
-            throw new InvalidArgumentException('non-nullable item_weight cannot be null');
-        }
-        $this->container['item_weight'] = $item_weight;
-
-        return $this;
-    }
-
-    /**
-     * Gets item_value
-     *
-     * @return \Dhl\Rest\Retoure\Model\Value
-     */
-    public function getItemValue(): \Dhl\Rest\Retoure\Model\Value
-    {
-        return $this->container['item_value'];
-    }
-
-    /**
-     * Sets item_value
-     *
-     * @param \Dhl\Rest\Retoure\Model\Value $item_value item_value
-     *
-     * @return $this
-     */
-    public function setItemValue(\Dhl\Rest\Retoure\Model\Value $item_value): static
-    {
-        if (is_null($item_value)) {
-            throw new InvalidArgumentException('non-nullable item_value cannot be null');
-        }
-        $this->container['item_value'] = $item_value;
+        $this->container['go_green_plus'] = $go_green_plus;
 
         return $this;
     }
