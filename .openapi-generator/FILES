@@ -49,4 +49,3 @@ src/Model/VAS.php
 src/Model/Value.php
 src/Model/Weight.php
 src/ObjectSerializer.php
-tests/Model/VASTest.php
