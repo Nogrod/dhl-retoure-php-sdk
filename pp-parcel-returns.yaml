@@ -467,36 +467,36 @@ components:
     Country:
       type: string
       enum:
-      - bel
-      - bgr
-      - dnk
-      - deu
-      - est
-      - fin
-      - fra
-      - grc
-      - gbr
-      - irl
-      - ita
-      - hrv
-      - lva
-      - ltu
-      - lux
-      - mlt
-      - nld
-      - nor
-      - aut
-      - pol
-      - prt
-      - rou
-      - swe
-      - che
-      - svk
-      - svn
-      - esp
-      - cze
-      - hun
-      - cyp
+      - BEL
+      - BGR
+      - DNK
+      - DEU
+      - EST
+      - FIN
+      - FRA
+      - GRC
+      - GBR
+      - IRL
+      - ITA
+      - HRV
+      - LVA
+      - LTU
+      - LUX
+      - MLT
+      - NLD
+      - NOR
+      - AUT
+      - POL
+      - PRT
+      - ROU
+      - SWE
+      - CHE
+      - SVK
+      - SVN
+      - ESP
+      - CZE
+      - HUN
+      - CYP
     CountryOfOrigin:
       type: string
       enum:
@@ -742,7 +742,7 @@ components:
       - YEM
       - ZAF
       - ZMB
-      - ZWE                    
+      - ZWE
     Weight:
       required:
         - uom
