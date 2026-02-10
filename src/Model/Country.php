@@ -37,65 +37,65 @@ namespace Dhl\Rest\Retoure\Model;
  */
 enum Country: string
 {
-    case BEL = 'BEL';
+    case BEL = 'bel';
 
-    case BGR = 'BGR';
+    case BGR = 'bgr';
 
-    case DNK = 'DNK';
+    case DNK = 'dnk';
 
-    case DEU = 'DEU';
+    case DEU = 'deu';
 
-    case EST = 'EST';
+    case EST = 'est';
 
-    case FIN = 'FIN';
+    case FIN = 'fin';
 
-    case FRA = 'FRA';
+    case FRA = 'fra';
 
-    case GRC = 'GRC';
+    case GRC = 'grc';
 
-    case GBR = 'GBR';
+    case GBR = 'gbr';
 
-    case IRL = 'IRL';
+    case IRL = 'irl';
 
-    case ITA = 'ITA';
+    case ITA = 'ita';
 
-    case HRV = 'HRV';
+    case HRV = 'hrv';
 
-    case LVA = 'LVA';
+    case LVA = 'lva';
 
-    case LTU = 'LTU';
+    case LTU = 'ltu';
 
-    case LUX = 'LUX';
+    case LUX = 'lux';
 
-    case MLT = 'MLT';
+    case MLT = 'mlt';
 
-    case NLD = 'NLD';
+    case NLD = 'nld';
 
-    case NOR = 'NOR';
+    case NOR = 'nor';
 
-    case AUT = 'AUT';
+    case AUT = 'aut';
 
-    case POL = 'POL';
+    case POL = 'pol';
 
-    case PRT = 'PRT';
+    case PRT = 'prt';
 
-    case ROU = 'ROU';
+    case ROU = 'rou';
 
-    case SWE = 'SWE';
+    case SWE = 'swe';
 
-    case CHE = 'CHE';
+    case CHE = 'che';
 
-    case SVK = 'SVK';
+    case SVK = 'svk';
 
-    case SVN = 'SVN';
+    case SVN = 'svn';
 
-    case ESP = 'ESP';
+    case ESP = 'esp';
 
-    case CZE = 'CZE';
+    case CZE = 'cze';
 
-    case HUN = 'HUN';
+    case HUN = 'hun';
 
-    case CYP = 'CYP';
+    case CYP = 'cyp';
 }
 
 

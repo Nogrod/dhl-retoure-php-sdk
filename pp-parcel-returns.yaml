@@ -467,36 +467,36 @@ components:
     Country:
       type: string
       enum:
-      - BEL
-      - BGR
-      - DNK
-      - DEU
-      - EST
-      - FIN
-      - FRA
-      - GRC
-      - GBR
-      - IRL
-      - ITA
-      - HRV
-      - LVA
-      - LTU
-      - LUX
-      - MLT
-      - NLD
-      - NOR
-      - AUT
-      - POL
-      - PRT
-      - ROU
-      - SWE
-      - CHE
-      - SVK
-      - SVN
-      - ESP
-      - CZE
-      - HUN
-      - CYP
+      - bel
+      - bgr
+      - dnk
+      - deu
+      - est
+      - fin
+      - fra
+      - grc
+      - gbr
+      - irl
+      - ita
+      - hrv
+      - lva
+      - ltu
+      - lux
+      - mlt
+      - nld
+      - nor
+      - aut
+      - pol
+      - prt
+      - rou
+      - swe
+      - che
+      - svk
+      - svn
+      - esp
+      - cze
+      - hun
+      - cyp
     CountryOfOrigin:
       type: string
       enum:
