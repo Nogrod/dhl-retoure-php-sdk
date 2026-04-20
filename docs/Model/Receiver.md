@@ -1,4 +1,4 @@
-# # Receiver
+# Receiver
 
 ## Properties
 

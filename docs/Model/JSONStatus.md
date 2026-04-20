@@ -1,4 +1,4 @@
-# # JSONStatus
+# JSONStatus
 
 ## Properties
 

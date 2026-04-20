@@ -1,4 +1,4 @@
-# # CountryOfOrigin
+# CountryOfOrigin
 
 ## Properties
 

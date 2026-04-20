@@ -1,4 +1,4 @@
-# # ContactAddress
+# ContactAddress
 
 ## Properties
 

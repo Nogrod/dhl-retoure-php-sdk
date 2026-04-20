@@ -1,4 +1,4 @@
-# # Weight
+# Weight
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# # RootGet200ResponseAmp
+# RootGet200ResponseAmp
 
 ## Properties
 

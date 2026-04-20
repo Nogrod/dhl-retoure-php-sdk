@@ -1,4 +1,4 @@
-# # Commodity
+# Commodity
 
 ## Properties
 

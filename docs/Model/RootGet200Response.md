@@ -1,4 +1,4 @@
-# # RootGet200Response
+# RootGet200Response
 
 ## Properties
 

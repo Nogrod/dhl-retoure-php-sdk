@@ -1,4 +1,4 @@
-# # LabelType
+# LabelType
 
 ## Properties
 

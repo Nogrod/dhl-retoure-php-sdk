@@ -1,4 +1,4 @@
-# # VAS
+# VAS
 
 ## Properties
 
