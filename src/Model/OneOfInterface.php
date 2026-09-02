@@ -1,11 +1,11 @@
 <?php
 
 /**
- * LabelType
+ * OneOfInterface
  *
  * PHP version 8.1
  *
- * @package  Dhl\Rest\Retoure
+ * @package  Dhl\Rest\Retoure\Model
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -29,20 +29,38 @@
 namespace Dhl\Rest\Retoure\Model;
 
 /**
- * LabelType Class Doc Comment
+ * Interface implemented by models generated from a `oneOf` schema.
  *
- * @description Controls which documents are returned.
- * @package  Dhl\Rest\Retoure
- * @author   OpenAPI Generator team
- * @link     https://openapi-generator.tech
+ * A `oneOf` schema is not represented by a value object; instead a value is one of the
+ * composed member types. Classes implementing this interface only carry the metadata that
+ * {@see ObjectSerializer::deserialize()} needs to resolve the concrete member type.
+ *
+ * @package Dhl\Rest\Retoure\Model
+ * @author  OpenAPI Generator team
  */
-enum LabelType: string
+interface OneOfInterface
 {
-    case SHIPMENT_LABEL = 'SHIPMENT_LABEL';
+    /**
+     * List of the types a value of this `oneOf` schema may be. Each entry uses the same
+     * notation as the values of {@see ModelInterface::openAPITypes()}.
+     *
+     * @return string[]
+     */
+    public static function getOneOfTypes(): array;
 
-    case QR_LABEL = 'QR_LABEL';
+    /**
+     * Name of the discriminator property used to resolve the concrete member type, or null
+     * when the schema has no discriminator.
+     *
+     * @return string|null
+     */
+    public static function getOneOfDiscriminator(): ?string;
 
-    case BOTH = 'BOTH';
+    /**
+     * Mapping of discriminator values to the concrete member type. Empty when the schema has
+     * no discriminator.
+     *
+     * @return array<string,string>
+     */
+    public static function getOneOfDiscriminatorMappings(): array;
 }
-
-

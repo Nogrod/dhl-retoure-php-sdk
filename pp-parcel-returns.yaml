@@ -742,7 +742,7 @@ components:
       - YEM
       - ZAF
       - ZMB
-      - ZWE
+      - ZWE                    
     Weight:
       required:
         - uom

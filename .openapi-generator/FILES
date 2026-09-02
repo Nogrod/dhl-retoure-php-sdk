@@ -31,6 +31,7 @@ src/ApiException.php
 src/Configuration.php
 src/FormDataProcessor.php
 src/HeaderSelector.php
+src/Model/AnyOfInterface.php
 src/Model/Commodity.php
 src/Model/ContactAddress.php
 src/Model/Country.php
@@ -40,6 +41,7 @@ src/Model/Document.php
 src/Model/JSONStatus.php
 src/Model/LabelType.php
 src/Model/ModelInterface.php
+src/Model/OneOfInterface.php
 src/Model/Receiver.php
 src/Model/ReturnOrder.php
 src/Model/ReturnOrderConfirmation.php
