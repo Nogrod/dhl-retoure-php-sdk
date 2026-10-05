@@ -11,9 +11,12 @@ docs/Model/ContactAddress.md
 docs/Model/Country.md
 docs/Model/CountryOfOrigin.md
 docs/Model/CustomsDetails.md
+docs/Model/DocFormat.md
 docs/Model/Document.md
 docs/Model/JSONStatus.md
 docs/Model/LabelType.md
+docs/Model/PrintFormat.md
+docs/Model/PrintResolution.md
 docs/Model/Receiver.md
 docs/Model/ReturnOrder.md
 docs/Model/ReturnOrderConfirmation.md
@@ -37,11 +40,14 @@ src/Model/ContactAddress.php
 src/Model/Country.php
 src/Model/CountryOfOrigin.php
 src/Model/CustomsDetails.php
+src/Model/DocFormat.php
 src/Model/Document.php
 src/Model/JSONStatus.php
 src/Model/LabelType.php
 src/Model/ModelInterface.php
 src/Model/OneOfInterface.php
+src/Model/PrintFormat.php
+src/Model/PrintResolution.php
 src/Model/Receiver.php
 src/Model/ReturnOrder.php
 src/Model/ReturnOrderConfirmation.php
@@ -51,3 +57,6 @@ src/Model/VAS.php
 src/Model/Value.php
 src/Model/Weight.php
 src/ObjectSerializer.php
+tests/Model/DocFormatTest.php
+tests/Model/PrintFormatTest.php
+tests/Model/PrintResolutionTest.php

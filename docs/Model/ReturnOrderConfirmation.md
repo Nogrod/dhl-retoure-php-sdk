@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **sstatus** | [**\Dhl\Rest\Retoure\Model\JSONStatus**](JSONStatus.md) |  |
-**shipment_no** | **string** |  |
-**international_shipment_no** | **string** |  | [optional]
+**shipment_no** | **string** | The shipment number of the created return label. |
+**international_shipment_no** | **string** | The shipment number of the created return label. | [optional]
 **label** | [**\Dhl\Rest\Retoure\Model\Document**](Document.md) |  |
 **qr_label** | [**\Dhl\Rest\Retoure\Model\Document**](Document.md) |  | [optional]
 **qr_link** | **string** | Deep link to import the QR Code to the Post &amp; DHL App | [optional]

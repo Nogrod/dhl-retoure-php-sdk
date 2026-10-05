@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **receiver_id** | **string** | the receiver id of the return shipment |
 **shipper_country** | [**\Dhl\Rest\Retoure\Model\Country**](Country.md) |  |
 **ekp** | **string** |  |
-**billing_number** | **string** |  |
+**billing_number** | **string** | Billing number for the return order. The billing number depends on the shipper country and the product and service combination. |
 **company_name** | **string** |  |
 **number_range** | **string** | Number range associated with the billing number. The return shipment number is part of the number range. |
 **receiver_address** | [**\Dhl\Rest\Retoure\Model\ContactAddress**](ContactAddress.md) |  |

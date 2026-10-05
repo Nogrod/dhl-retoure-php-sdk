@@ -1,6 +1,6 @@
 openapi: '3.0.0'
 info:
-  version: 1.0.9
+  version: 1.1.0
   title: Parcel DE Returns API
   description: >
     # Introduction
@@ -74,7 +74,7 @@ paths:
                       version:
                         type: string
                         description: "Sandbox version is >= Prod version"
-                        pattern: '^v\d{1,2}.\d{1,2}[.\d{1,5}]$'
+                        pattern: '^v\d{1,2}\.\d{1,2}\.\d{1,5}$'
                         example: 'v1.0.0'
                       rev: 
                         type: string
@@ -98,6 +98,34 @@ paths:
           description: Controls which documents are returned.
           schema:
             $ref: '#/components/schemas/LabelType'
+        - in: query
+          name: docFormat
+          required: false
+          description: |-
+            **Defines** the **printable** document format to be used for label documents.
+          schema:
+            $ref: '#/components/schemas/DocFormat'
+        - in: query
+          name: printFormat
+          required: false
+          description: |-
+            **Defines** the print medium for the shipping label. The different option vary from standard paper sizes DIN A4 and DIN A6 to specific label print formats. 910-300-* are the label print formats for Zebra printers (DocFormat ZPL2) and can also be used for DocFormat PDF. **Country restrictions:** `910-300-600` and `910-300-610` are only available for German domestic returns; `910-300-400` and `910-300-410` are available for German and French returns. Requesting an unsupported combination of receiver country and printFormat is rejected.
+          schema:
+            $ref: '#/components/schemas/PrintFormat'
+        - in: query
+          name: printResolution
+          required: false
+          description: |-
+            **Defines** the resolution of the shipping label. Use this parameter only if you set docFormat to ZPL2.
+          schema:
+            $ref: '#/components/schemas/PrintResolution'
+        - in: query
+          name: qrValidityPeriod
+          required: false
+          schema:
+            $ref: '#/components/schemas/QrCodeValidityPeriod'
+          description: |-
+            **Defines** the validity period of the QR code.
       requestBody:
         description: >-
           The request body contains the details of the return label that should be created. E.g. sender, references
@@ -120,6 +148,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReturnOrderConfirmation'
+              example:
+                sstatus:
+                  title: "Created"
+                  status: 201
+                  detail: "Created"
+                shipmentNo: "999991587211"
+                label:
+                  b64: "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmgvaeTAAAA="
+                routingCode: "40327653113+99000933090010"
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -159,6 +196,7 @@ paths:
         - in: query
           name: billingNumber
           required: false
+          description: The billing number to filter the return locations for.
           schema:
             $ref: '#/components/schemas/BillingNumber'
         - in: query
@@ -178,6 +216,25 @@ paths:
                   $ref: '#/components/schemas/Receiver'
                 minItems: 0
                 maxItems: 5000
+              example:
+                - receiverId: deu
+                  shipperCountry: deu
+                  ekp: "1234567890"
+                  billingNumber: "33333333330701"
+                  companyName: "DHL Paket GmbH"
+                  numberRange: "99999XXXXXXC"
+                  receiverAddress:
+                    name1: "DHL Retoure"
+                    addressStreet: "Charles-de-Gaulle-Str."
+                    addressHouse: "20"
+                    postalCode: "53113"
+                    city: Bonn
+                  companyAddress:
+                    name1: DHL Paket GmbH
+                    addressStreet: Charles-de-Gaulle-Str.
+                    addressHouse: "20"
+                    postalCode: "53113"
+                    city: Bonn
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -192,6 +249,23 @@ components:
   schemas:
     ReturnOrder:
       type: object
+      description: A return order describing the shipper, shipment details and the receiver for which a return label should be created.
+      example:
+        receiverId: "deu"
+        customerReference: "Kundenreferenz"
+        shipmentReference: "Sendungsreferenz"
+        shipper:
+          name1: "Absender Retoure Zeile 1"
+          addressStreet: "Charles-de-Gaulle Str."
+          addressHouse: "20"
+          postalCode: "53113"
+          city: "Bonn"
+        itemWeight:
+          uom: "kg"
+          value: 1
+        itemValue:
+          currency: "EUR"
+          value: 10
       properties:
         receiverId:
           $ref: '#/components/schemas/ReceiverId'
@@ -199,7 +273,8 @@ components:
           type: string
           minLength: 0
           maxLength: 50
-          description: The customer reference may be used to identify the original customer order. The first 30 characters are visibly printed on the returns label.         
+          example: "Kundenreferenz"
+          description: The customer reference may be used to identify the original customer order. The first 30 characters are visibly printed on the returns label.
         shipmentReference:
           type: string
           minLength: 0
@@ -225,6 +300,7 @@ components:
         - receiverId
     Receiver:
       type: object
+      description: A return receiver location including its company, address and billing information.
       properties:
         receiverId:
           $ref: '#/components/schemas/ReceiverId'
@@ -238,12 +314,12 @@ components:
         companyName:
           type: string
           maxLength: 50
-          example: DHL Paket GmbH
+          example: "DHL Paket GmbH"
         numberRange:
           type: string
           maxLength: 35
           description: Number range associated with the billing number. The return shipment number is part of the number range.
-          example: 99999XXXXXXC
+          example: "99999XXXXXXC"
         receiverAddress:
           $ref: '#/components/schemas/ContactAddress'
         companyAddress:
@@ -276,6 +352,7 @@ components:
         - companyAddress
     ContactAddress:
       type: object
+      description: A postal contact address including name, street, postal code and city.
       properties:
         name1:
           maxLength: 50
@@ -291,7 +368,7 @@ components:
           maxLength: 50
           minLength: 0
           type: string
-          description: "An optional, additional line of name information"
+          description: "An optional, third additional line of name information"
         addressStreet:
           type: string
           description: "This is just the street name."
@@ -379,10 +456,10 @@ components:
         sstatus:
           allOf:
             - $ref: '#/components/schemas/JSONStatus'
-            - example: 
-                title: "Created"
-                status: 201
-                detail: "Created"
+          example:
+            title: "Created"
+            status: 201
+            detail: "Created"
         shipmentNo:
           $ref: '#/components/schemas/shipmentNo'
         internationalShipmentNo:
@@ -415,6 +492,9 @@ components:
           type: string
           format: byte
           example: "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmgvaeTAAAA="
+        zpl2:
+          type: string
+          description: The document in zpl encoding
 
     JSONStatus:
       description: "Standard elements for JSON status from (https://tools.ietf.org/html/rfc7807) "
@@ -456,15 +536,17 @@ components:
     BillingNumber:
       type: string
       pattern: '\d{10}\d{2}\w{2}'
-      example: 22222222220701
+      example: "33333333330701"
+      description: Billing number for the return order. The billing number depends on the shipper country and the product and service combination.
     PostalCode:
       description: postal code, relaxed UPU version
       maxLength: 10
       minLength: 3
       pattern: "^[0-9A-Za-z]+([ -]?[0-9A-Za-z]+)*$"
       type: string
-      example: 12345
+      example: "12345"
     Country:
+      description: Country of the shipper as a three-character country code according to ISO 3166-1 alpha-3.
       type: string
       enum:
       - bel
@@ -498,6 +580,7 @@ components:
       - hun
       - cyp
     CountryOfOrigin:
+      description: Country where the returned item was produced. A valid country code consisting of three characters according to ISO 3166-1 alpha-3.
       type: string
       enum:
       - ABW
@@ -744,6 +827,7 @@ components:
       - ZMB
       - ZWE                    
     Weight:
+      description: Weight of an item or shipment including unit of measurement and value.
       required:
         - uom
         - value
@@ -797,7 +881,8 @@ components:
     shipmentNo:
       type: string
       maxLength: 50
-      example: 999991587211
+      example: "999991587211"
+      description: The shipment number of the created return label.
     LabelType:
       type: string
       enum:
@@ -805,7 +890,38 @@ components:
         - QR_LABEL
         - BOTH
       default: BOTH
-      description: Controls which documents are returned.
+      description: The type of documents to be returned, e.g. only the shipment label, only the QR label or both.
+    DocFormat:
+      type: string
+      enum:
+        - ZPL2
+        - PDF
+      default: PDF
+      description: "The printable document format used for the generated label documents, either PDF or Zebra ZPL2."
+    PrintFormat:
+      type: string
+      enum:
+        - A4
+        - 910-300-400
+        - 910-300-410
+        - 910-300-600
+        - 910-300-610
+      default: A4
+      description: "**Defines** the print medium for the shipping label. The different option vary from standard paper sizes DIN A4 and DIN A6 to specific label print formats."
+    PrintResolution:
+      type: string
+      enum:
+        - "203"
+        - "300"
+      default: "203"
+      description: "**Defines** the print resolution. Only valid with DocFormat ZPL2"
+    QrCodeValidityPeriod:
+      type: integer
+      minimum: 7
+      maximum: 180
+      default: 30
+      example: 30
+      description: "**Defines** the validity period of the QR code. Only valid with DocFormat PDF and PrintFormat A4."
   responses:
     '400':
       description: "JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
@@ -818,7 +934,7 @@ components:
               status: 400
               detail: "Bad Request - The request could not be understood by the server due to malformed syntax."
     '401':
-      description: "JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
+      description: "Unauthorized - JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
       content:
         application/problem+json:
           schema:
@@ -828,7 +944,7 @@ components:
               status: 401
               detail: "Unauthorized - The client could not be authenticated since the request lacks the required HTTP headers or the credentials are just wrong."
     '403':
-      description: "JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
+      description: "Forbidden - JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
       content:
         application/problem+json:
           schema:
@@ -838,7 +954,7 @@ components:
               status: 403
               detail: "Forbidden - The client has successfully been authenticated but could not be authorized for the particular request."
     '422':
-      description: "JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
+      description: "Unprocessable Entity - JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
       content:
         application/problem+json:
           schema:
@@ -848,7 +964,7 @@ components:
               status: 422
               detail: "Unprocessable Entity - unable to process the content type of the request entity."
     '429':
-      description: "JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
+      description: "Too Many Requests - JSON error per RFC 7807 (https://tools.ietf.org/html/rfc7807)."
       content:
         application/problem+json:
           schema:
@@ -860,93 +976,96 @@ components:
   examples:
     returnlabel_deu:
       summary: German domestic return label
+      description: Example request for a German domestic return label.
       value:
         receiverId: deu
         customerReference: Kundenreferenz
         shipmentReference: Sendungsreferenz
         shipper: 
-            name1: Absender Retoure Zeile 1
-            name2: Absender Retoure Zeile 2
-            name3: Absender Retoure Zeile 3
-            addressStreet: Charles-de-Gaulle Str.
-            addressHouse: 20
-            postalCode: 53113
-            city: Bonn
-            email: Max.Mustermann@dhl.local
-            phone: +49 123456789
+            name1: "Absender Retoure Zeile 1"
+            name2: "Absender Retoure Zeile 2"
+            name3: "Absender Retoure Zeile 3"
+            addressStreet: "Charles-de-Gaulle Str."
+            addressHouse: "20"
+            postalCode: "53113"
+            city: "Bonn"
+            email: "Max.Mustermann@dhl.local"
+            phone: "+49 123456789"
         itemWeight: 
-            uom: kg
+            uom: "kg"
             value: 1
         itemValue: 
-            currency: EUR
+            currency: "EUR"
             value: 10
     returnlabel_deu_ggp:
       summary: German domestic label with GoGreen Plus
+      description: Example request for a German domestic return label with the GoGreen Plus service.
       value:
-        receiverId: deu
-        customerReference: Kundenreferenz
-        shipmentReference: Sendungsreferenz
+        receiverId: "deu"
+        customerReference: "Kundenreferenz"
+        shipmentReference: "Sendungsreferenz"
         shipper: 
-            name1: Absender Retoure Zeile 1
-            name2: Absender Retoure Zeile 2
-            name3: Absender Retoure Zeile 3
-            addressStreet: Charles-de-Gaulle Str.
-            addressHouse: 20
-            postalCode: 53113
-            city: Bonn
-            email: Max.Mustermann@dhl.local
-            phone: +49 123456789
+            name1: "Absender Retoure Zeile 1"
+            name2: "Absender Retoure Zeile 2"
+            name3: "Absender Retoure Zeile 3"
+            addressStreet: "Charles-de-Gaulle Str."
+            addressHouse: "20"
+            postalCode: "53113"
+            city: "Bonn"
+            email: "Max.Mustermann@dhl.local"
+            phone: "+49 123456789"
         itemWeight: 
-            uom: kg
+            uom: "kg"
             value: 1
         itemValue: 
-            currency: EUR
+            currency: "EUR"
             value: 10
         services:
             goGreenPlus: true
     returnlabel_che:
       summary: Return label with customs
+      description: Example request for a return label from Switzerland including customs details.
       value:
-        receiverId: che
-        customerReference: Kundenreferenz
-        shipmentReference: Sendungsreferenz
+        receiverId: "che"
+        customerReference: "Kundenreferenz"
+        shipmentReference: "Sendungsreferenz"
         shipper: 
-            name1: Absender Retoure Zeile 1
-            name2: Absender Retoure Zeile 2
-            name3: Absender Retoure Zeile 3
-            addressStreet: Musterstr.
-            addressHouse: 1
-            postalCode: 3344
-            city: Bern
-            email: Max.Mustermann@dhl.local
-            phone: +49 123456789
+            name1: "Absender Retoure Zeile 1"
+            name2: "Absender Retoure Zeile 2"
+            name3: "Absender Retoure Zeile 3"
+            addressStreet: "Musterstr."
+            addressHouse: "1"
+            postalCode: "3344"
+            city: "Bern"
+            email: "Max.Mustermann@dhl.local"
+            phone: "+49 123456789"
         itemWeight: 
-            uom: g
+            uom: "g"
             value: 1200.2
         itemValue: 
-            currency: EUR
+            currency: "EUR"
             value: 1012.99
         customsDetails: 
             items:
-              - itemDescription: Artikel-Beschreibung 1
+              - itemDescription: "Artikel-Beschreibung 1"
                 packagedQuantity: 1
                 itemWeight: 
-                  uom: g
+                  uom: "g"
                   value: 500
                 itemValue: 
-                  currency: EUR
+                  currency: "EUR"
                   value: 1000
-                countryOfOrigin: FRA
+                countryOfOrigin: "FRA"
                 hsCode: "88011900"
-              - itemDescription: Artikel-Beschreibung 2
+              - itemDescription: "Artikel-Beschreibung 2"
                 packagedQuantity: 1
                 itemWeight: 
-                  uom: g
+                  uom: "g"
                   value: 700
                 itemValue: 
-                  currency: EUR
+                  currency: "EUR"
                   value: 12.99
-                countryOfOrigin: DEU
+                countryOfOrigin: "DEU"
                 hsCode: "12345678"
   securitySchemes:
     BasicAuth:

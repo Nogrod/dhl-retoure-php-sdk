@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name1** | **string** | Name1. Line 1 of name information |
 **name2** | **string** | An optional, additional line of name information | [optional]
-**name3** | **string** | An optional, additional line of name information | [optional]
+**name3** | **string** | An optional, third additional line of name information | [optional]
 **address_street** | **string** | This is just the street name. |
 **address_house** | **string** | This is just the house number. |
 **city** | **string** |  |
