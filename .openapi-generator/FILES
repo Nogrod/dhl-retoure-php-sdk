@@ -57,6 +57,3 @@ src/Model/VAS.php
 src/Model/Value.php
 src/Model/Weight.php
 src/ObjectSerializer.php
-tests/Model/DocFormatTest.php
-tests/Model/PrintFormatTest.php
-tests/Model/PrintResolutionTest.php

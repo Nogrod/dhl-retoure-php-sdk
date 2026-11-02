@@ -109,7 +109,7 @@ paths:
           name: printFormat
           required: false
           description: |-
-            **Defines** the print medium for the shipping label. The different option vary from standard paper sizes DIN A4 and DIN A6 to specific label print formats. 910-300-* are the label print formats for Zebra printers (DocFormat ZPL2) and can also be used for DocFormat PDF. **Country restrictions:** `910-300-600` and `910-300-610` are only available for German domestic returns; `910-300-400` and `910-300-410` are available for German and French returns. Requesting an unsupported combination of receiver country and printFormat is rejected.
+            **Defines** the print medium for the shipping label. The different option vary from standard paper sizes DIN A4 and DIN A6 to specific label print formats. 910-300-* are the label print formats for Zebra printers (DocFormat ZPL2) and can also be used for DocFormat PDF. **Country restrictions:** `910-300-600` and `910-300-610` are only available for German domestic returns; `A4`, `910-300-400` and `910-300-410` are available for German, French, Swedish, Swiss and Austrian returns. Requesting an unsupported combination of receiver country and printFormat is rejected.
           schema:
             $ref: '#/components/schemas/PrintFormat'
         - in: query
